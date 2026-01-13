@@ -26,6 +26,7 @@ const notification_user_module_1 = require("./modules/notification-user/notifica
 const media_module_1 = require("./modules/media/media.module");
 const permission_module_1 = require("./modules/permission/permission.module");
 const pemission_repository_module_1 = require("./modules/permission/repositories/pemission.repository.module");
+const kafka_module_1 = require("./kafka/kafka.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -55,6 +56,7 @@ exports.AppModule = AppModule = __decorate([
             notification_user_module_1.NotificationUserModule,
             permission_module_1.PermissionsModule,
             pemission_repository_module_1.PermissionRepositoryModule,
+            kafka_module_1.KafkaModule,
         ],
         providers: [],
     })
