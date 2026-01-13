@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Status Update - <%= project_name %>
+    </title>
+    <style>
+        body {
+            background-color: #f6f8fa;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+
+        .header {
+            background-color: #0d6efd;
+            color: white;
+            text-align: center;
+            padding: 20px 10px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 22px;
+        }
+
+        .content {
+            padding: 25px;
+            line-height: 1.6;
+        }
+
+        .content h2 {
+            color: #0d6efd;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .footer {
+            background: #f1f3f5;
+            padding: 15px;
+            text-align: center;
+            font-size: 12px;
+            color: #777;
+        }
+
+        .footer a {
+            color: #0d6efd;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>
+                <%= project_name %> Account Update
+            </h1>
+        </div>
+
+        <div class="content">
+            <h2>Hello <%= name %>,</h2>
+            <p>
+                This is to inform you that your account status has been updated.
+                Your current account status is:
+                <% if (status==='Active' ) { %>
+                    <span style="font-weight: bold;text-transform: uppercase; color: #28a745;"><%= status %></span>
+                <% } else if (status==='Inactive' ) { %>
+                    <span style="font-weight: bold;text-transform: uppercase; color: #ffc107;"><%= status %></span>
+                <% } else if (status==='Blocked' ) { %>
+                    <span style="font-weight: bold;text-transform: uppercase; color: #dc3545;"><%= status %></span>
+                <% } else { %>
+                <span style="font-weight: bold;"><%= status %></span>
+                <% } %>
+            </p>
+
+            <% if (status==='Active' ) { %>
+                <p>Congratulations! Your account has been activated.</p>
+                <p>You now have full access to your account and all platform features.</p>
+            <% } else if (status==='Inactive' ) { %>
+                <p>Your account has been temporarily disabled. Please contact support if you believe this is a mistake.</p>
+            <% } else if (status==='Blocked' ) { %>
+                <p>Your account has been blocked due to a policy violation or suspicious activity. Contact our support team for assistance.</p>
+            <% } %>
+
+            <p>
+                Thank you for being part of <%= project_name %>.<br /> — The <%= project_name %> Team
+            </p>
+        </div>
+
+        <div class="footer">
+            <p>
+                © <%= new Date().getFullYear() %>
+                    <%= project_name %>. All rights reserved.<br />
+                        Need help? <a
+                            href="mailto:support@<%= project_name.toLowerCase().replace(/\s/g, '') %>.com">Contact
+                            Support</a>
+            </p>
+        </div>
+    </div>
+</body>
+
+</html>

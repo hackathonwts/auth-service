@@ -1,0 +1,53 @@
+import { JwtService } from '@nestjs/jwt';
+import { ConfigService } from '@nestjs/config';
+import { ApiResponse } from '@common/types/api-response.type';
+import { RoleRepository } from '@modules/role/repositories/role.repository';
+import { UserRepository } from '@modules/user/user.repository';
+import { AdminLoginDto, AppleSocialAuthDto, ChangePasswordDto, FaceVerificationDto, ForgotPasswordDto, RefreshJwtDto, ResendOTPDto, ResetPasswordDto, SignupDto, UpdateAdminProfileDto, UserOnboardingDto, VerifyOTPDto } from './dto/auth.dto';
+import { RefreshTokenRepository } from '@modules/refresh-token/repository/refresh-token.repository';
+import { Request } from 'express';
+import { UserDeviceRepository } from '@modules/user-devices/repository/user-device.repository';
+import { WinstonLoggerService } from '@common/logger/winston.logger';
+import { Queue } from 'bullmq';
+import { MulterS3File } from '@common/types/multer-s3-file';
+export declare class AuthService {
+    private readonly mailQueue;
+    private readonly configService;
+    private readonly roleRepository;
+    private readonly jwtService;
+    private readonly userRepository;
+    private readonly userDeviceRepository;
+    private readonly refreshTokenRepository;
+    winston: WinstonLoggerService;
+    private readonly applePrivateKey;
+    constructor(mailQueue: Queue, configService: ConfigService, roleRepository: RoleRepository, jwtService: JwtService, userRepository: UserRepository, userDeviceRepository: UserDeviceRepository, refreshTokenRepository: RefreshTokenRepository);
+    private generateRefreshToken;
+    private login;
+    private signup;
+    private findOrCreateUserFromSocial;
+    userSignup(body: SignupDto, files: MulterS3File[], req: Request): Promise<ApiResponse>;
+    socialLoginGoogle(req: Request, idToken: string): Promise<ApiResponse>;
+    socialLoginFacebook(req: Request, accessToken: string): Promise<ApiResponse>;
+    socialLoginApple(req: Request, body: AppleSocialAuthDto): Promise<ApiResponse | {
+        success: boolean;
+        message: string;
+        data: any;
+    }>;
+    adminLogin(req: Request, body: AdminLoginDto): Promise<ApiResponse>;
+    adminSignup(body: SignupDto, files: Express.Multer.File[], req: Request): Promise<ApiResponse>;
+    refreshToken(body: RefreshJwtDto): Promise<ApiResponse>;
+    forgotPassword(body: ForgotPasswordDto): Promise<ApiResponse>;
+    resetPassword(body: ResetPasswordDto): Promise<ApiResponse>;
+    changePassword(userId: string, body: ChangePasswordDto): Promise<ApiResponse>;
+    getProfileDetails(userId: string): Promise<ApiResponse>;
+    updateProfileDetails(userId: string, body: UpdateAdminProfileDto, files: Express.Multer.File[]): Promise<ApiResponse>;
+    resendOtp(dto: ResendOTPDto): Promise<ApiResponse>;
+    verifyOtp(dto: VerifyOTPDto, req: Request): Promise<ApiResponse>;
+    onboarding(userId: string, dto: UserOnboardingDto, files: {
+        mainPhoto?: MulterS3File[];
+        galleryPhotos?: MulterS3File[];
+    }): Promise<ApiResponse>;
+    faceVerification(userId: string, dto: FaceVerificationDto, file: MulterS3File): Promise<ApiResponse>;
+    deleteAccount(userId: string): Promise<ApiResponse>;
+    logout(userId: string, accessToken: string): Promise<ApiResponse>;
+}

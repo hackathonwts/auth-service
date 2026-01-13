@@ -1,0 +1,33 @@
+import { RoleRepository } from '@modules/role/repositories/role.repository';
+import { UpdateUserPasswordDto, ListingUserDto, CreateUserDto, UpdateUserStatusDto, UpdateUserDto } from './user.dto';
+import type { ApiResponse } from '@common/types/api-response.type';
+import { UserRepository } from './user.repository';
+import { UserDeviceRepository } from '@modules/user-devices/repository/user-device.repository';
+import { ConfigService } from '@nestjs/config';
+import { Queue } from 'bullmq';
+import { ChangePasswordDto, UpdateUserProfileDto } from '@modules/auth/dto/auth.dto';
+import { MulterS3File } from '@common/types/multer-s3-file';
+import { MediaRepository } from '@modules/media/media.repository';
+export declare class UserService {
+    private readonly mailQueue;
+    private readonly mediaRepository;
+    private readonly userRepository;
+    private readonly userDeviceRepository;
+    private readonly roleRepository;
+    private readonly configService;
+    constructor(mailQueue: Queue, mediaRepository: MediaRepository, userRepository: UserRepository, userDeviceRepository: UserDeviceRepository, roleRepository: RoleRepository, configService: ConfigService);
+    getUsers(body: ListingUserDto): Promise<ApiResponse>;
+    getUser(id: string): Promise<ApiResponse>;
+    createUser(body: CreateUserDto, files: Express.Multer.File[]): Promise<ApiResponse>;
+    updateUser(id: string, body: UpdateUserDto, files: Express.Multer.File[]): Promise<ApiResponse>;
+    updateStatus(id: string, body: UpdateUserStatusDto): Promise<ApiResponse>;
+    resetPassword(id: string, body: UpdateUserPasswordDto): Promise<ApiResponse>;
+    deleteUser(id: string): Promise<ApiResponse>;
+    deleteUsers(userIds: string[]): Promise<ApiResponse>;
+    updateProfile(userId: string, body: UpdateUserProfileDto, files: Express.Multer.File[]): Promise<ApiResponse>;
+    updateSettings(userId: string, body: any): Promise<ApiResponse>;
+    changePassword(userId: string, body: ChangePasswordDto): Promise<ApiResponse>;
+    getGalleryImages(userId: string): Promise<ApiResponse>;
+    deleteGalleryImage(userId: string, imageId: string): Promise<ApiResponse>;
+    addGalleryImages(userId: string, files: MulterS3File[]): Promise<ApiResponse>;
+}

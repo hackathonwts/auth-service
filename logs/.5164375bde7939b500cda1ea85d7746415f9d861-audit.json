@@ -1,0 +1,30 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 7
+    },
+    "auditLog": "logs/.5164375bde7939b500cda1ea85d7746415f9d861-audit.json",
+    "files": [
+        {
+            "date": 1767617925940,
+            "name": "logs/error-2026-01-05.log",
+            "hash": "c511461953d39b4c8676919067127109e33cc6e20f673a118a43b03eadaf30da"
+        },
+        {
+            "date": 1767680740338,
+            "name": "logs/error-2026-01-06.log",
+            "hash": "442f87c4b7457e904417cccce3793077ef1e2583e531fa94d60fa263c456ecab"
+        },
+        {
+            "date": 1767878714784,
+            "name": "logs/error-2026-01-08.log",
+            "hash": "f6c2b0b24da4b2ca5067d0fc255540702ad4c5e32b0f62e0e0a616fbe7d99e87"
+        },
+        {
+            "date": 1767940517716,
+            "name": "logs/error-2026-01-09.log",
+            "hash": "587bc4c48bc95681c13402ca57785431a7d9ad19a0ab10a6cc3c2c97967f4029"
+        }
+    ],
+    "hashType": "sha256"
+}

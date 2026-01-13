@@ -1,0 +1,23 @@
+<div>
+    <div>Hello <%= name %>,</div>
+
+    <div>
+        <p>Your email verification OTP is:</p>
+        
+        <h2 style="color: #2f00ff; letter-spacing: 4px; font-size: 28px; margin: 10px 0;">
+            <%= otp %>
+        </h2>
+
+        <p>This OTP will expire in <strong><%= expiryMinutes %> minutes</strong>.</p>
+
+        <p>If you did not request this, please ignore this email.</p>
+    </div>
+
+    <div style="margin-top: 20px;">
+        <p>Thank you,</p>
+    </div>
+
+    <div>
+        <strong><%= project_name %></strong>
+    </div>
+</div>
